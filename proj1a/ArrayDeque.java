@@ -86,7 +86,7 @@ public class ArrayDeque<T> {
         if (size <= index) {
             return null;
         }
-        pos = (head + index - item.length) % item.length;
+        int pos = (head + index - item.length) % item.length;
         return item[pos];
     }
 }
