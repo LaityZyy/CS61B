@@ -85,7 +85,7 @@ public class ArrayDeque<T> {
         tail = prev(tail);
         size -= 1;
         if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
-            resize(size * 2);
+            resize(size * 2 + 1);
         }
         return x;
     }
