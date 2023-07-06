@@ -90,7 +90,10 @@ public class ArrayDeque<T> {
         if (size <= index) {
             return null;
         }
-        int p = (head + index - item.length) % item.length;
+        int p = head + index;
+        if (p >= item.length) {
+            p -= item.length;
+        }
         return item[p];
     }
 }
