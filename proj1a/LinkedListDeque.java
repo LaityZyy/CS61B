@@ -1,8 +1,8 @@
 public class LinkedListDeque<T> {
     private  class TNode {
-        public T item;
-        public TNode prev;
-        public TNode next;
+        private T item;
+        private TNode prev;
+        private TNode next;
 
         public TNode(T x, TNode p, TNode n) {
             item = x;
@@ -43,7 +43,7 @@ public class LinkedListDeque<T> {
     }
     public void printDeque() {
         TNode p = sentinel.next;
-        while(p != sentinel) {
+        while (p != sentinel) {
             System.out.print(p.item + " ");
             p = p.next;
         }
@@ -74,7 +74,7 @@ public class LinkedListDeque<T> {
         }
         int i = 0;
         TNode p = sentinel.next;
-        while(i < index) {
+        while (i < index) {
             i += 1;
             p = p.next;
         }
