@@ -86,6 +86,7 @@ public class ArrayDeque<T> {
         size -= 1;
         if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
             resize(size * 2);
+        }
         return x;
     }
     public T get(int index) {
