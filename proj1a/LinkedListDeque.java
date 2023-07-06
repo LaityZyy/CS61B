@@ -1,10 +1,8 @@
 public class LinkedListDeque<T> {
-
     private class TNode {
         private T item;
         private TNode prev;
         private TNode next;
-
         public TNode(T x, TNode p, TNode n) {
             item = x;
             prev = p;
@@ -37,6 +35,7 @@ public class LinkedListDeque<T> {
         size += 1;
     }
     public boolean isEmpty() {
+
         return size == 0;
     }
     public int size() {
