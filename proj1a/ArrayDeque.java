@@ -82,7 +82,7 @@ public class ArrayDeque<T> {
         }
         T x = item[tail];
         item[tail] = null;
-        tail = prev(head);
+        tail = prev(tail);
         size -= 1;
         return x;
     }
