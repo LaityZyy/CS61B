@@ -33,6 +33,7 @@ public class ArrayDeque<T> {
         tail = size - 1;
         item = a;
     }
+
     public void addFirst(T x) {
         if (size == item.length) {
             resize(size * 2);
@@ -64,26 +65,27 @@ public class ArrayDeque<T> {
     }
     public T removeFirst() {
         if (isEmpty()) {
-            head = 1;
-            tail = 0;
             return null;
         }
         T x = item[head];
         item[head] = null;
         head = next(head);
         size -= 1;
+        if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
+            resize(size * 2);
+        }
         return x;
     }
     public T removeLast() {
         if (isEmpty()) {
-            head = 1;
-            tail = 0;
             return null;
         }
         T x = item[tail];
         item[tail] = null;
         tail = prev(tail);
         size -= 1;
+        if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
+            resize(size * 2);
         return x;
     }
     public T get(int index) {

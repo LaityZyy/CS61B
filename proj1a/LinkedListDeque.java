@@ -35,7 +35,6 @@ public class LinkedListDeque<T> {
         size += 1;
     }
     public boolean isEmpty() {
-
         return size == 0;
     }
     public int size() {
@@ -90,6 +89,7 @@ public class LinkedListDeque<T> {
         return helper(p.next, index - 1);
     }
     public T getRecursive(int index) {
+
         return helper(sentinel.next, index);
     }
 }
