@@ -25,12 +25,12 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int p = head;
-        for (int i = 0; i < size; i++) {
+        for (int i = 1; i <= size; i++) {
             a[i] = item[p];
             p = next(p);
         }
-        head = 0;
-        tail = size - 1;
+        head = 1;
+        tail = size;
         item = a;
     }
 
@@ -72,7 +72,7 @@ public class ArrayDeque<T> {
         head = next(head);
         size -= 1;
         if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
-            resize(size * 2 + 1);
+            resize(size * 2 + 8);
         }
         return x;
     }
@@ -85,7 +85,7 @@ public class ArrayDeque<T> {
         tail = prev(tail);
         size -= 1;
         if ((1.0 * size) / (1.0 * item.length) <= 0.25) {
-            resize(size * 2 + 1);
+            resize(size * 2 + 8);
         }
         return x;
     }
