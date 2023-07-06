@@ -8,7 +8,7 @@ public class ArrayDeque<T> {
         size = 0;
         head = 1;
         tail = 0;
-        item = (T[])new Object[8];
+        item = (T[]) new Object[8];
     }
     private int prev(int x) {
         if (x - 1 < 0) {
@@ -23,9 +23,9 @@ public class ArrayDeque<T> {
         return x + 1;
     }
     private void resize(int capacity) {
-        T[] a = (T[])new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         int p = head;
-        for (int i = 0;i < size;i++) {
+        for (int i = 0; i < size; i++) {
             a[i] = item[p];
             p = next(p);
         }
@@ -57,7 +57,7 @@ public class ArrayDeque<T> {
     }
     public void printDeque() {
         int p = head;
-        for (int i = 0;i < size;i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(item[i] + " ");
             p = next(p);
         }
@@ -86,11 +86,7 @@ public class ArrayDeque<T> {
         if (size <= index) {
             return null;
         }
-        int i = 0, p = head;
-        while (i < index) {
-            i += 1;
-            p = next(p);
-        }
-        return item[p];
+        pos = (head + index - item.length) % item.length;
+        return item[pos];
     }
 }
