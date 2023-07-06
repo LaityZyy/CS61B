@@ -1,4 +1,4 @@
-public class LinkListDeque<T> {
+public class LinkedListDeque<T> {
     private class TNode {
         private T item;
         private TNode prev;
@@ -61,7 +61,7 @@ public class LinkListDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        TNode x = sentinel.prev.item;
+        T x = sentinel.prev.item;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
