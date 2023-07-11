@@ -1,4 +1,3 @@
-
 public class LinkedListDeque<T> {
     private class TNode {
         private T item;
