@@ -17,21 +17,19 @@ public class TestPalindrome {
     }
     @Test
     public void testIsPalindrome() {
-        String a = "a";
-        assertTrue(palindrome.isPalindrome(a));
-        String b = "";
-        assertTrue(palindrome.isPalindrome(b));
-        String c = "racecar";
-        assertTrue(palindrome.isPalindrome(c));
-        String d = "horse";
-        assertFalse(palindrome.isPalindrome(d));
-        String e = "rancor";
-        assertFalse(palindrome.isPalindrome(e));
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("aba"));
+        assertTrue(palindrome.isPalindrome("aaccbbbccaa"));
+
+        assertFalse(palindrome.isPalindrome("ab"));
+        assertFalse(palindrome.isPalindrome("ababba"));
     }
+
     @Test
     public void testIsOffByOnePalindrome() {
         CharacterComparator cc = new OffByOne();
-        assertTrue(palindrome.isPalindrome("abcdab", cc));
-        assertFalse(palindrome.isPalindrome("fvuhdishubfv", cc));
+        assertTrue(palindrome.isPalindrome("flake", cc));
+        assertFalse(palindrome.isPalindrome("aba", cc));
     }
 }
