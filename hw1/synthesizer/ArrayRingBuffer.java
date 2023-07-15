@@ -1,7 +1,7 @@
 package synthesizer;
 import java.util.Iterator;
 
-public abstract class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
     /* Index for the next enqueue. */
@@ -60,6 +60,16 @@ public abstract class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
             throw new RuntimeException("Ring Buffer Underflow");
         }
         return rb[first];
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public T next() {
+        return null;
     }
 
     private class ArrayRingBufferIterator implements Iterator<T> {

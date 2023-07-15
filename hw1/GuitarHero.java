@@ -2,8 +2,8 @@ import edu.princeton.cs.algs4.StdAudio;
 
 public class GuitarHero {
     private static final double CONCERT_A = 440.0;
-    private static final String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
-    private static final int totalNotes = 37;
+    private static  String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+    private static  int totalNotes = 37;
 
     private static double ithConcert(int i) {
         return CONCERT_A * Math.pow(2, (i - 24.0) / 12);
@@ -14,7 +14,7 @@ public class GuitarHero {
             gs[i] = new synthesizer.GuitarString(ithConcert(i));
         }
 
-        while(true) {
+        while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
                 int index = keyboard.indexOf(key);
