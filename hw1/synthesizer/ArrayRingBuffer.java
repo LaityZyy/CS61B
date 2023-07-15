@@ -70,10 +70,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
             curNum = 0;
         }
 
+        @Override
         public boolean hasNext() {
             return curNum < fillCount;
         }
 
+        @Override
         public T next() {
             T retValue = rb[pos];
             pos = (pos + 1) % capacity;
