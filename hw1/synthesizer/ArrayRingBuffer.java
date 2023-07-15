@@ -62,16 +62,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
         return rb[first];
     }
 
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public T next() {
-        return null;
-    }
-
     private class ArrayRingBufferIterator implements Iterator<T> {
         private int pos;
         private int curNum;
