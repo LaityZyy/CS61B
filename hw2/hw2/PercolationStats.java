@@ -12,7 +12,7 @@ public class PercolationStats {
         }
         this.T = T;
         this.openSiteFractions = new double[T];
-        for (int i = 0; i < T; i++){
+        for (int i = 0; i < T; i++) {
             Percolation percolation = pf.make(N);
             while (!percolation.percolates()) {
                 int x, y;
@@ -38,7 +38,7 @@ public class PercolationStats {
         return mean() - 1.96 * stddev() / Math.sqrt(T);
     }
 
-    private double confidenceHigh() {
+    public double confidenceHigh() {
         return mean() + 1.96 * stddev() / Math.sqrt(T);
     }
 
