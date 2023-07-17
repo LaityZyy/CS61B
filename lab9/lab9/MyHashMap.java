@@ -64,19 +64,25 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         if (loadFactor() > MAX_LF) {
             resize(size * 2);
         }
+        size++;
         int h = hash(key);
-        if (!buckets[h].containsKey(key)) {
-            size++;
+        if (buckets[h].containsKey(key)) {
+            size--;
         }
         buckets[h].put(key, value);
     }
 
     private void resize(int capacity) {
-        ArrayMap<K, V>[] x = new ArrayMap[capacity];
-        for (int i = 0; i < buckets.length; i++) {
-            x[i] = buckets[i];
+        ArrayMap<K, V>[] oldBuckets = buckets;
+        int oldSize = size;
+        buckets = new ArrayMap[capacity];
+        clear();
+        size = oldSize;
+        for (int i = 0; i < oldBuckets.length; i++) {
+            for (K k : oldBuckets[i]) {
+                buckets[hash(k)].put(k, oldBuckets[i].get(k));
+            }
         }
-        buckets = x;
     }
 
     /* Returns the number of key-value mappings in this map. */

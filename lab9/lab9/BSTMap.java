@@ -115,13 +115,73 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         return s;
     }
 
+    /** return a new tree which removes the smallest key
+     *  and associated value in the given tree.
+     */
+    private Node removeMin(Node p) {
+        if (p.left == null) {
+            return p.right;
+        }
+        p.left = removeMin(p.left);
+        return p;
+    }
+
+    /** return the node with smallest key in the given tree. */
+    private Node min(Node p) {
+        if (p.left == null) {
+            return p;
+        }
+        return min(p.left);
+    }
+
+
+    /** return a new tree with the given key removed.
+     *  assume that the key is in the tree.
+     */
+    private Node remove(K key, Node p) {
+        int cmp = p.key.compareTo(key);
+        if (cmp < 0) {
+            p.right = remove(key, p.right);
+        } else if (cmp > 0) {
+            p.left = remove(key, p.left);
+        } else {
+            if (p.left == null) return p.right;
+            if (p.right == null) return p.left;
+            Node t = p;
+            p = min(t.right);
+            p.right = removeMin(t.right);
+            p.left = t.left;
+        }
+        return p;
+    }
+
     /** Removes KEY from the tree if present
      *  returns VALUE removed,
      *  null on failed removal.
      */
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+        V retValue = get(key);
+        if (retValue == null) {
+            return null;
+        }
+        root = remove(key, root);
+        size--;
+        return retValue;
+    }
+
+    private Node find(K key, Node p) {
+        if (p == null) {
+            return null;
+        }
+        int cmp = p.key.compareTo(key);
+        if (cmp < 0) {
+            return find(key, p.right);
+        } else if (cmp > 0) {
+            return find(key, p.left);
+        } else {
+            return p;
+        }
     }
 
     /** Removes the key-value entry for the specified key only if it is
@@ -130,7 +190,17 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      **/
     @Override
     public V remove(K key, V value) {
-        throw new UnsupportedOperationException();
+        V retValue = get(key);
+        if (retValue == null) {
+            return null;
+        }
+        Node x = find(key, root);
+        if (x.value == value) {
+            root = remove(key, root);
+            size--;
+            return retValue;
+        }
+        return null;
     }
 
     @Override
