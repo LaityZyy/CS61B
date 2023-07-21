@@ -2,8 +2,6 @@ package hw4.puzzle;
 
 import edu.princeton.cs.algs4.MinPQ;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Solver {
@@ -14,7 +12,7 @@ public class Solver {
         public SearchNode(WorldState s, int m, SearchNode p) {
             state = s;
             moves = m;
-            pre = p;;
+            pre = p;
         }
 
         public WorldState getState() {
@@ -31,7 +29,9 @@ public class Solver {
 
         @Override
         public int compareTo(SearchNode o) {
-            return this.moves + this.state.estimatedDistanceToGoal() - o.moves - o.state.estimatedDistanceToGoal();
+            int a = this.state.estimatedDistanceToGoal();
+            int b = o.state.estimatedDistanceToGoal();
+            return this.moves + a - o.moves - b;
         }
     }
 

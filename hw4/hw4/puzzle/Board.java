@@ -98,7 +98,9 @@ public class Board implements WorldState {
         return estimatedDist;
     }
     public boolean equals(Object y) {
-        if (y == this) return true;
+        if (y == this) {
+            return true;
+        }
         if (y == null || this.getClass() != y.getClass()) {
             return false;
         }
@@ -123,11 +125,11 @@ public class Board implements WorldState {
       * Uncomment this method. */
     public String toString() {
         StringBuilder s = new StringBuilder();
-        int N = size();
-        s.append(N + "\n");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                s.append(String.format("%2d ", tileAt(i,j)));
+        int l = size();
+        s.append(l + "\n");
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < l; j++) {
+                s.append(String.format("%2d ", tileAt(i, j)));
             }
             s.append("\n");
         }
