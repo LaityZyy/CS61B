@@ -66,37 +66,43 @@ public class CountingSort {
      * @param arr int array that will be sorted
      */
     public static int[] betterCountingSort(int[] arr) {
-        int num = 0;
-        for (int x : arr) {
-            if (x < 0) {
-                num++;
-            }
+        // find max and min
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i : arr) {
+            max = max > i ? max : i;
+            min = min < i ? min : i;
         }
-        if (num == 0) {
-            return naiveCountingSort(arr);
+
+        // gather all the counts for each value
+        int[] counts = new int[max - min + 1];
+        for (int i : arr) {
+            counts[i - min]++;
         }
-        int[] ne = new int[num];
-        int[] po = new int[arr.length - num];
-        int n = 0, p = 0;
-        for (int x : arr) {
-            if (x < 0) {
-                ne[n++] = -1 * x;
-            } else {
-                po[p++] = x;
-            }
+
+        // int[] sorted = new int[arr.length];
+        // int k = 0;
+        // for (int i = 0; i < counts.length; i += 1) {
+        //     for (int j = 0; j < counts[i]; j += 1, k += 1) {
+        //         sorted[k] = i + min;
+        //     }
+        // }
+
+        int[] starts = new int[max - min + 1];
+        int pos = 0;
+        for (int i = 0; i < starts.length; i += 1) {
+            starts[i] = pos;
+            pos += counts[i];
         }
-        ne = naiveCountingSort(ne);
-        po = naiveCountingSort(po);
-        n = num - 1;
-        p = 0;
-        int[] ans = new int[arr.length];
-        for (int i = 0; i < ans.length; i++) {
-            if (i < num) {
-                ans[i] = -1 * ne[n--];
-            } else {
-                ans[i] = po[p++];
-            }
+
+        int[] sorted = new int[arr.length];
+        for (int i = 0; i < arr.length; i += 1) {
+            int item = arr[i];
+            int place = starts[item - min];
+            sorted[place] = item;
+            starts[item - min]++;
         }
-        return ans;
+
+        return sorted;
     }
 }
